@@ -1,12 +1,12 @@
 ---
-title: Blog
+title: JdRobot Internship Blog
 ---
 
-# ![JdRobots](imgs/logo.png)
+# <img src="imgs/logo.png" alt="JdRobot" style="height: 100;">
 
 ## Welcome to my blog!
 
-Here I will write everything I learn during my internship at JdRobots.
+Here I will write everything I learn during my internship at JdRobot.
 
 ## Index
 
@@ -38,4 +38,4 @@ You can contact me through [davidduro2002@gmail.com](mailto:davidduro2002@gmail.
 
 ---
 
-&copy; 2024 Blog. All rights reserved.
+&copy; 2024 JdRobot Internship Blog. All rights reserved.
