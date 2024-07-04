@@ -77,6 +77,39 @@ First of all, we have to install all the requierements. You have detailed inform
 
 I have encountered several errors when launching the script that creates the developer environment.
 
+So I had to reinstall nvm this way:
+```bash
+nvm use 16
+nvm install-latest-npm
+```
+
+And then reinstall yarn:
+```bash
+npm uninstall -g yarn
+npm install -g yarn
+```
+
+### How to launch developer enviroment
+
+```bash
+cd <dir>/RoboticsAcademy
+```
+First we must launch the frontend like this:
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+nvm install 16
+nvm use 16
+cd react_frontend/ && yarn install && yarn run dev
+```
+
+Finally we launch the script (in other terminal):
+```bash
+sudo sh scripts/develop_academy.sh
+```
+
+
+Using `Ctrl+c` will stop them.
+
 ## Contact
 
 You can contact me through [davidduro2002@gmail.com](mailto:davidduro2002@gmail.com).
