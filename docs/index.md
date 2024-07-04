@@ -4,15 +4,16 @@ title: JdRobot Internship Blog
 
 # <img src="imgs/logo.png" alt="JdRobot" style="height: 100px;">
 
-## Welcome to my blog!
+## Welcome to my JdRobot Internship Blog!
 
 Here I will write everything I learn during my internship at JdRobot.
 
 ## Index
 
-- [Welcome to my blog!](#welcome-to-my-blog)
+- [Welcome to my JdRobot Internship Blog!](#welcome-to-my-jdrobot-internship-blog)
 - [Building GitHub Pages](#building-github-pages)
 - [Launching RoboticsAcademy Docker](#launching-roboticsacademy-docker)
+- [Developer Enviroment](#developer-enviroment)
 - [Contact](#contact)
 
 ## Building GitHub Pages
@@ -41,7 +42,8 @@ RoboticsAcademy allows you to launch the docker locally without the need for an 
 
 Exercises from Service Robotics.
 
-SO: Ubuntu 22.04.4 LTS, RAM: 14 GB, CPU: AMD Ryzen 5 7535HS (6 cores):
+#### No GPU Acceleration
+SO: Ubuntu 22.04.4 LTS, RAM: 16 GB, CPU: AMD Ryzen 5 7535HS (6 cores):
 
 | Task                     | Gazebo’s RTF | Gazebo’s FPS | % CPU Usage |
 |--------------------------|--------------|-------------|------------|
@@ -51,10 +53,9 @@ SO: Ubuntu 22.04.4 LTS, RAM: 14 GB, CPU: AMD Ryzen 5 7535HS (6 cores):
 | Amazon Warehouse         | 0.97         | 5           | 99%        |
 
 
-
 ### Conclusions
 
-All the exercises work correctly, as in the previous version, except the self-localizing vacuum cleaner exercise, I have seen that the map path has changed, but even modifying it, it does not work correctly. I have also checked that they work importing the modules in any of these ways:
+All the exercises work correctly, as in the previous version, except the self-localizing vacuum cleaner exercise, I have seen that the map path has changed, but even modifying it, it does not work correctly (I finally realized that the getMap() function has some problems). I have also checked that they work importing the modules in any of these ways:
 
 Last version:
 ```bash
@@ -67,6 +68,14 @@ New version:
 import GUI
 import HAL
 ```
+
+## Developer Enviroment
+
+First of all, we have to install all the requierements. You have detailed information here: [Instructions for developers](https://github.com/JdeRobot/RoboticsAcademy/blob/humble-devel/docs/InstructionsForDevelopers.md)
+
+### Starting Problems
+
+I have encountered several errors when launching the script that creates the developer environment.
 
 ## Contact
 
