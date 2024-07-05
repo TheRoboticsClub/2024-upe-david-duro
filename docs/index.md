@@ -229,7 +229,19 @@ Once I was able to solve all the bugs, I got the code to run without any problem
 
 ## Contact
 
-You can contact me through [davidduro2002@gmail.com](mailto:davidduro2002@gmail.com).
+<a href="https://linkedin.com/in/david-duro-aragon%c3%a9s-32a0a4272" target="blank">
+   <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="LinkedIn" height="30" width="40" />
+</a>
+<a href="https://instagram.com/__d_u_r_o__" target="blank">
+   <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="30" width="40" />
+</a>
+<a href="https://github.com/dduro2020" target="blank">
+   <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="Github" height="30" width="40" />
+</a>
+<a href="mailto:davidduro2002@gmail.com" target="blank">
+   <img align="center" src="https://logowik.com/content/uploads/images/gmail-new-icon5198.jpg" alt="Mail" height="30" width="40" />
+</a>
+
 
 ---
 
