@@ -178,7 +178,15 @@ Here the error message:
 
 It took me quite a while to realise what was going on, until I debugged the size of the arrays and mask used.
 
+The original comparation:
 ```python
+# humble-devel branch
+mask = image < 128
+colored_image[mask] = image[mask][:, None] * 2
+```
+
+```python
+# my branch
 def process_colors(self, image):
    if image.ndim != 3 or image.shape[2] != 1:
       print(f"The input image must be a 3D array with a single layer (height, width, 1).")
@@ -214,11 +222,10 @@ def process_colors(self, image):
 
 The problem was in the comparison between an image with 3 channels and a greyscale image with only 1 channel, I solved it by adding a new matrix.
 
-The original comparation:
-```python
-mask = image < 128
-colored_image[mask] = image[mask][:, None] * 2
-```
+### New Problems
+
+Once I was able to solve all the bugs, I got the code to run without any problems (my code does not work correctly as the speed controller was tested in ROS1). But the pre-navigation part should still work correctly, which I couldn't check as the map was not being updated. At first I thought I had done something wrong and showNumpy() was still having problems. So I decided to take a look at the ROS1 gui.py class and compare them. This is when I realised that the part that updates and publishes the images is still not implemented. Which is something that is out of my knowledge for now.
+
 
 ## Contact
 
