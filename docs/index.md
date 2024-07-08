@@ -15,6 +15,7 @@ Here I will write everything I learn during my internship at JdRobot.
 - [Launching RoboticsAcademy Docker](#launching-roboticsacademy-docker)
 - [Developer Enviroment](#developer-enviroment)
 - [Solving First Issue](#solving-first-issue)
+- [JdRobot Division](#jdrobot-division)
 - [Contact](#contact)
 
 ## Building GitHub Pages
@@ -131,6 +132,8 @@ def getMap(self, url):
 
 ```python
 # my branch
+from PIL import Image
+
 def getMap(self, url):
    try:
    # Open with PIL
@@ -158,14 +161,16 @@ def showNumpy(self, image):
 
 ```python
 # my branch
+from shared.image import SharedImage
+
 def __init__(self, host):
    # Code....
-   self.shared_image = []
+   self.shared_image = SharedImage("guiimage")
 
 # Code....
 
 def showNumpy(self, image):
-   self.shared_image.append(self.process_colors(image))
+   self.shared_image.add(self.process_colors(image))
 ```
 
 At this point the bug was apparently fixed, the problem came with the error in the following function.
@@ -187,6 +192,7 @@ colored_image[mask] = image[mask][:, None] * 2
 
 ```python
 # my branch
+#### NOT USED ----- EXPLAINED ABOVE -----
 def process_colors(self, image):
    if image.ndim != 3 or image.shape[2] != 1:
       print(f"The input image must be a 3D array with a single layer (height, width, 1).")
@@ -226,6 +232,33 @@ The problem was in the comparison between an image with 3 channels and a greysca
 
 Once I was able to solve all the bugs, I got the code to run without any problems (my code does not work correctly as the speed controller was tested in ROS1). But the pre-navigation part should still work correctly, which I couldn't check as the map was not being updated. At first I thought I had done something wrong and showNumpy() was still having problems. So I decided to take a look at the ROS1 gui.py class and compare them. This is when I realised that the part that updates and publishes the images is still not implemented. Which is something that is out of my knowledge for now.
 
+### Change of format
+
+We must modify our array to a format that json understands.
+
+### New window
+
+To show the new map created by the user we must create a new window next to the original map, which will be updated when the user calls the showNumpy() function. The problem is that for now I don't know how to create the new window and I can't update the already created window either.
+
+### Actualization
+
+A few days later, thanks to a collaborator, we were able to copy the functionality of displaying the new ros1 window and fix the functions I mentioned above. The process colours function was correct, it didn't work for me because during my work with that practice the function was different.
+
+By simply fixing the getmap() function and adding the new window, we fixed the exercise. (issue-2637)
+
+## JdRobot Division
+
+### Robots Academy
+
+Repository with the exercises and frontend, here are the classes and the specific functions of each exercise.
+
+### RoboticsApplicationManager
+
+Repository for communications between `browser` - `manager` - `user`.
+
+### RoboticsInfrastructure
+
+Repository with robot models, gazebo maps and launchers.
 
 ## Contact
 
