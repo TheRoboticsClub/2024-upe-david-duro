@@ -16,6 +16,7 @@ Here I will write everything I learn during my internship at JdRobot.
 - [Developer Enviroment](#developer-enviroment)
 - [Solving First Issue](#solving-first-issue)
 - [JdRobot Division](#jdrobot-division)
+- [issue-2640](#issue-2640)
 - [Contact](#contact)
 
 ## Building GitHub Pages
@@ -259,6 +260,10 @@ Repository for communications between `browser` - `manager` - `user`.
 ### RoboticsInfrastructure
 
 Repository with robot models, gazebo maps and launchers.
+
+## issue-2640
+
+GUI was divided into two classes, which was not efficient as this could actually be simplified. We simplified the functions and created a single global class called ThreadingGUI. Once this was done, we realised that acks are never checked. We also solved the problem.
 
 ## Contact
 
