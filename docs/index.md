@@ -7,6 +7,7 @@ title: JdRobot Internship Blog
 ## Welcome to my JdRobot Internship Blog!
 
 Here I will write everything I learn during my internship at JdRobot.
+This blog serves as a working memory, the index does not keep an alphabetical order, it only represents my ordered work from the first day of the internship. Probably problems that arise at the beginning will be solved in the following points of the table of contents. As I said, it is more a working memory or blog than an explanatory blog.
 
 ## Index
 
@@ -17,6 +18,8 @@ Here I will write everything I learn during my internship at JdRobot.
 - [Solving First Issue](#solving-first-issue)
 - [JdRobot Division](#jdrobot-division)
 - [issue-2640](#issue-2640)
+- [RoboticsInfrastructure Starting Guide](#roboticsinfrastructure-starting-guide)
+- [Testing exercises and solutions](#testing-exercises-and-solutions)
 - [Contact](#contact)
 
 ## Building GitHub Pages
@@ -259,11 +262,56 @@ Repository for communications between `browser` - `manager` - `user`.
 
 ### RoboticsInfrastructure
 
-Repository with robot models, gazebo maps and launchers.
+Repository with robot models, gazebo maps and launchers. It also contains libraries such as HAL.
 
 ## issue-2640
 
 GUI was divided into two classes, which was not efficient as this could actually be simplified. We simplified the functions and created a single global class called ThreadingGUI. Once this was done, we realised that acks are never checked. We also solved the problem.
+
+## RoboticsInfrastructure Starting Guide
+
+For our changes to this package to take effect in our docker we must bind the changes, they will be uploaded to the docker ws from where we will use a terminal to compile it.
+
+### GUI as library 
+
+We have been trying to further simplify the GUI class and create a library for its main functions. To do this, the HAL library has been used as a template. Once created (thanks to another contributor) to test the changes we must follow these steps:
+
+
+First we must enter RoboticsAcademy/compose_cfg and modify the dev_humble.yaml we are using, adding these lines:
+
+```yaml
+- type: bind
+        source: /home/duro/Escritorio/PRACTICAS/RoboticsInfrastructure/gui_interfaces
+        target: /home/ws/src/gui_interfaces
+```
+
+Then, we will have to launch the docker, enter an exercise and from the terminal:
+
+```bash
+cd /home/ws
+colcon build --symlink-install
+```
+
+Once this is done, the changes will be saved and we should be ready to test the changes.
+
+
+Right now we don't know why, but it doesn't work as we want, here is an example of how the GUI.py file of one of the simplest exercises (basic vacuum cleaner) would look like:
+
+```python
+from console import start_console
+from gui_interfaces.general.threading_gui import  ThreadingGUI
+
+host = "ws://127.0.0.1:2303"
+gui = ThreadingGUI(host)
+
+# Redirect the console
+start_console()
+```
+
+## Testing exercises and solutions
+
+We have solved some small problems in the exercises, although global navegation issue #2535 is still open.
+
 
 ## Contact
 
