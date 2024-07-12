@@ -308,10 +308,63 @@ gui = ThreadingGUI(host)
 start_console()
 ```
 
-## Testing exercises and solutions
+## Gui interfaces and console interfaces created
+The problem we were having is that we had to generate an image in order to test the new 'libraries', when trying to compile from the console inside docker, they were not linking correctly.
 
-We have solved some small problems in the exercises, although global navegation issue #2535 is still open.
+Here is an example of the vacuum cleaner GUI.py, to see the difference from when it didn't work:
 
+```python
+import json
+
+from gui_interfaces.general.threading_gui import ThreadingGUI
+from console_interfaces.general.console import start_console
+from map import Map
+from HAL import getPose3d
+
+class GUI(ThreadingGUI):
+
+    def __init__(self, host="ws://127.0.0.1:2303"):
+        super().__init__(host)
+
+        # Payload vars
+        # Specific variables....
+        #
+        #
+
+        self.start()
+
+    # Prepares and sends a map to the websocket server
+    def update_gui(self):
+        # Specific function for each exercise
+        # Mainly sends info to update gui
+        #
+        #
+
+    def reset_gui(self):
+        self.map.reset()
+
+host = "ws://127.0.0.1:2303"
+gui = GUI(host)
+
+# Redirect the console
+start_console()
+```
+
+All exercises were modified, simplified and all repetitive code was removed, honestly, it is now much clearer and each exercise only has its own specific code. The rescue_people and follow_person exercises were the least simplified because of their greater complexity compared to the others.
+
+Thanks to this breakthrough and some changes provided by other contributors, the new version 4.6.2 has been released.
+
+## Testing exercises in new version
+
+Everything works correctly.
+
+## Opened #2655
+
+The console do not works properly because it always return an incorrect line error. It looks simple, but this bug is complex.
+
+## Updated docs
+
+Some of the instructions were very brief and more explanations have been added to solve some of the most common problems. There is still work to be done here, but some things are still beyond my knowledge at the moment.
 
 ## Contact
 
