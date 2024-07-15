@@ -20,6 +20,8 @@ This blog serves as a working memory, the index does not keep an alphabetical or
 - [issue-2640](#issue-2640)
 - [RoboticsInfrastructure Starting Guide](#roboticsinfrastructure-starting-guide)
 - [Testing exercises and solutions](#testing-exercises-and-solutions)
+- [Gui interfaces and console interfaces created](#gui-interfaces-and-console-interfaces-created)
+- [Opened #2655](#opened-2655)
 - [Contact](#contact)
 
 ## Building GitHub Pages
@@ -44,20 +46,45 @@ For more detailed instructions, visit the [GitHub Pages documentation](https://d
 
 RoboticsAcademy allows you to launch the docker locally without the need for an internet connection and perform a wide variety of robotics exercises using the open-source Gazebo simulator. The user simply creates a Python program, which will interact with ROS underneath.
 
+## Testing exercises and solutions
+
 ### Performance Metrics
 
-Exercises from Service Robotics.
+Exercises from Service Robotics 4.6.2.
 
 #### No GPU Acceleration
 SO: Ubuntu 22.04.4 LTS, RAM: 16 GB, CPU: AMD Ryzen 5 7535HS (6 cores):
 
 | Task                     | Gazebo’s RTF | Gazebo’s FPS | % CPU Usage |
 |--------------------------|--------------|-------------|------------|
-| Autoparking              | 0.88         | 5           | 95%        |
-| Localized Vacuum Cleaner | -         | -          | -        |
-| Rescue People            | 0.99         | 18          | 99%        |
-| Amazon Warehouse         | 0.97         | 5           | 99%        |
+| Follow Line         | 0.72         | 9           | 300%   |
+| Vacuum Cleaner      | 1.0          | 18          | 450%   |
+| AutoParking         | 0.88         | 5           | 380%   |
+| Follow Person       | 0.99         | 18          | 500%   |
+| Loc Vacuum Cleaner  | 1.0          | 18          | 450%   |
+| Global Navegation   | 0.85         | 18          | 590%   |
+| Rescue People       | 1.0          | 25          | 540%   |
+| Obstacle Avoidance  | 0.86         | 13          | 520%   |
+| 3D Reconstruction   | 0.84         | 9           | 420%   |
+| Amazon Warehouse    | 0.98         | 6           | 500%   |
+| Montecarlo Laser    | 1.0          | 18          | 420%    |
 
+#### GPU Acceleration
+SO: Ubuntu 22.04.4 LTS, RAM: 16 GB, CPU: AMD Ryzen 5 7535HS (6 cores), GPU: Nvidia GeForce RTX 3050 Ti:
+
+| Task                     | Gazebo’s RTF | Gazebo’s FPS | % CPU Usage | % GPU Usage |
+|--------------------------|--------------|-------------|------------|-----|
+| Follow Line         | 0.97         | 58          | 110%   | 35% |
+| Vacuum Cleaner      | 1.0          | 62          | 65%    | 30% |
+| AutoParking         | 0.97         | 37          | 120%   | 30% |
+| Follow Person       | 1.0          | 42          | 650%   | 25% |
+| Loc Vacuum Cleaner  | 1.0          | 62          | 65%    | 28% |
+| Global Navegation   | 1.0          | 62          | 100%   | 25% |
+| Rescue People       | 1.0          | 62          | 115%   | 35% |
+| Obstacle Avoidance  | 0.99         | 60          | 74%    | 23% |
+| 3D Reconstruction   | 0.99         | 58          | 110%   | 30% |
+| Amazon Warehouse    | 1.0          | 60          | 82%    | 25% |
+| Montecarlo Laser    | 1.0          | 62          | 65%    | 35% |
 
 ### Conclusions
 
@@ -354,10 +381,6 @@ All exercises were modified, simplified and all repetitive code was removed, hon
 
 Thanks to this breakthrough and some changes provided by other contributors, the new version 4.6.2 has been released.
 
-## Testing exercises in new version
-
-Everything works correctly.
-
 ## Opened #2655
 
 The console do not works properly because it always return an incorrect line error. It looks simple, but this bug is complex.
@@ -365,6 +388,7 @@ The console do not works properly because it always return an incorrect line err
 ## Updated docs
 
 Some of the instructions were very brief and more explanations have been added to solve some of the most common problems. There is still work to be done here, but some things are still beyond my knowledge at the moment.
+
 
 ## Contact
 
