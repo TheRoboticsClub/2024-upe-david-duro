@@ -22,6 +22,7 @@ This blog serves as a working memory, the index does not keep an alphabetical or
 - [Testing exercises and solutions](#testing-exercises-and-solutions)
 - [Gui interfaces and console interfaces created](#gui-interfaces-and-console-interfaces-created)
 - [Opened #2655](#opened-2655)
+- [Starting to solve issue #2655](#starting-to-solve-issue-2655)
 - [Contact](#contact)
 
 ## Building GitHub Pages
@@ -50,7 +51,12 @@ RoboticsAcademy allows you to launch the docker locally without the need for an 
 
 ### Performance Metrics
 
-Exercises from Service Robotics 4.6.2.
+First make sure you are in `RoboticsAcademy`. Run `scripts/develop_academy.sh`:
+```bash
+sudo sh scripts/develop_academy.sh -g
+```
+
+Exercises from RoboticsBackend 4.6.2.
 
 #### No GPU Acceleration
 SO: Ubuntu 22.04.4 LTS, RAM: 16 GB, CPU: AMD Ryzen 5 7535HS (6 cores):
@@ -389,6 +395,11 @@ The console do not works properly because it always return an incorrect line err
 
 Some of the instructions were very brief and more explanations have been added to solve some of the most common problems. There is still work to be done here, but some things are still beyond my knowledge at the moment.
 
+## Starting to solve issue #2655
+
+The error is caused by entering 4 header lines when correcting the file, so there is always an error margin of 4 lines.
+- 1 Creating a mini radi with RoboticsApplicationManager custom branch.
+- 2 Creating a mini radi with the corrections made.
 
 ## Contact
 
