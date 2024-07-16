@@ -23,6 +23,7 @@ This blog serves as a working memory, the index does not keep an alphabetical or
 - [Gui interfaces and console interfaces created](#gui-interfaces-and-console-interfaces-created)
 - [Opened #2655](#opened-2655)
 - [Starting to solve issue #2655](#starting-to-solve-issue-2655)
+- [Reopened #2576](#reopened-2576)
 - [Contact](#contact)
 
 ## Building GitHub Pages
@@ -397,9 +398,63 @@ Some of the instructions were very brief and more explanations have been added t
 
 ## Starting to solve issue #2655
 
+### Arised Problems
+
 The error is caused by entering 4 header lines when correcting the file, so there is always an error margin of 4 lines.
 - 1 Creating a mini radi with RoboticsApplicationManager custom branch.
 - 2 Creating a mini radi with the corrections made.
+
+After several tests, I have found that for some reason the margin of error is sometimes 6 lines instead of 4.
+
+I have also reopened an issue that occurred when quickly relaunching docker, which generates an error because port 5900 0 5901 is not cleared.
+
+# <img src="imgs/port_issue.png" alt="Port issue">
+
+To solve the error I have found two temporal solutions, the first is to remove the docker that has not been closed properly, this closes the port forcibly:
+
+```bash
+docker ps -a
+```
+```bash
+docker rm [docker_id]
+```
+\
+Another option is to relaunch it but with other options, that is to say, alternate between launching it with and without graphic acceleration, I suppose that in this case another port is opened and gives the previous one time to close.
+
+```bash
+sh scripts/develop_academy.sh -g
+```
+\
+To find a solution we are checking what is keeping the ports busy, using commands such as:
+
+
+```bash
+lsof -i :5901
+```
+```bash
+sudo netstat -anp | find :5901
+```
+\
+The connection timeout in this line of `vnc_server.py` has also been increased.
+
+```python
+def wait_for_port(self, host, port, timeout=60):
+```
+\
+But it's still not working.
+
+Other way to solve this issue, is killing the process from inside the docker with this command:
+```bash
+fuser -k 5901/tcp 
+```
+
+
+### Solving the original issue
+The process is being much slower than expected, because of all the problems that are arising, I am also not able to find the point where the errors are returned, as they are not always printed by the docker console, usually the errors are printed in the terminal where you launch the docker. If you add to this that there is not always a 4 line error, and for each test you have to relaunch the docker... 
+
+## Reopened #2576
+
+As I explained above, for some reason a port is not closed properly, which prevents communication between the docker and the browser on relaunch.
 
 ## Contact
 
