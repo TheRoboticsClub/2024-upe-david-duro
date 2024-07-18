@@ -454,10 +454,30 @@ The process is being much slower than expected, because of all the problems that
 
 After a lot of debugging work, I realised that the import errors originate inside the manager.py. The problem is that the manager creates a subprocess to launch the program, which truncates the standard and error outputs to appear on the console, the problem here is that we should take that output before appearing on the console and modify it.
 
-The solution I was trying was to redirect that output to modify it by hand and put the corresponding line number, what is the problem? if it is an error outside the loop the error is 4 lines and inside or below the loop the error is 6 lines, this is due to how the lines are added to control the iteration frequency. After trying several things, using conditions to identify the different errors, I realised that it is very complicated to redirect that output without leaving open pipes and even knowing if the error was inside or outside the loop.
+Code to modify line error:
+```python
+def adjust_line_numbers(error_output):
+    pattern = re.compile(r'line (\d+)')
+    adjusted_output = error_output
+
+    for match in pattern.finditer(error_output):
+        line_number = int(match.group(1))
+        adjusted_line_number = max(line_number - 6, 1) 
+        adjusted_output = adjusted_output.replace(f'line {line_number}', f'line {adjusted_line_number}', 1)
+    
+    return adjusted_output
+```
+\
+The solution I was trying was to redirect that output to modify it by hand and put the corresponding line number, what is the problem? if it is an error outside the loop the error is 4 lines and inside or below the loop the error is 6 lines, this is due to how the lines are added to control the iteration frequency `def add_frequency_control(self, code):`. After trying several things, using conditions to identify the different errors, I realised that it is very complicated to redirect that output without leaving open pipes and even knowing if the error was inside or outside the loop.
 
 For these reasons, I tried to modify the way in which these extra lines are added, the import lines (4) were added inside the frontend and in the exercise I was testing `loc_vaccumm cleaner`, so that now the initial code had two extra lines. Now the error was only 2 lines inside or below the loop. To eliminate this error, I thought about removing that line and adding it to the loop, the problem is that there are no assignment statements like this in python loops. For this reason the only viable solution I can find is to either add all these lines to the initial program or leave the 1 line error inside or below the loop.
 
+I found all the programs I needed to modify using:
+
+```bash
+grep -r "# Enter sequential code!" [RoboticsAcademy path]
+```
+\
 The code:
 
 ```python
