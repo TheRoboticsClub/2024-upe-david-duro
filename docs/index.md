@@ -491,10 +491,21 @@ while True:
     # Enter iterative code!
 ```
 
+### Real issue found
+After more debugging, I realised that the manager, before executing the user's code, checks that it is ok using pylint, the problem is, that it was using an obsolete module of this library. In addition, there were no traces to check for these errors, so there was never any indication of an error. 
+
+Now that this has been clarified, the two programs that use this module have been updated.
+
+At this point, it remains to properly notify the user of errors, but there is no longer an error in the line number.
 
 ## Reopened #2576
 
 As I explained above, for some reason a port is not closed properly, which prevents communication between the docker and the browser on relaunch.
+
+## Problems with issue #2356
+
+As I explained, to temporarily solve the port error, I have to launch docker each time with a configuration, with and without graphic acceleration, the problem is that now with graphic acceleration gazebo doesn't load.
+
 
 ## Contact
 
