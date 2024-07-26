@@ -506,6 +506,22 @@ As I explained above, for some reason a port is not closed properly, which preve
 
 As I explained, to temporarily solve the port error, I have to launch docker each time with a configuration, with and without graphic acceleration, the problem is that now with graphic acceleration gazebo doesn't load.
 
+## New Functionalities
+
+To get the missing functionality of notifying with an error pop-up when errors have been detected in the code, apart from a great understanding of how the manager works we also have to learn how the coms_manager works. This is quite complicated, so I decided to start trying to send errors through the browser console so that the user can debug the program without problems.
+
+At this point, I thought it was as simple as saving the program which runs pylint inside the docker and launching it, this for some reason doesn't work, neither does redirecting the outputs, as they always end up redirected to the developer terminal. After many tests of redirections and different ways of launching it, I decided to give it another approach.
+I was looking from where the terminal was launched, which was not entirely clear to me, as the supposed launcher in charge of it doesn't seem to be used. After several tests, I tried to create a function inside the console class to launch commands in it. To do so, I initialised the class in the manager and tried to launch commands there (without success). For this I had to create a new image adding the `xdotool` module in the docker dependencies.
+
+Here is an aproximation of the new function:
+```python
+def send_command_to_xterm(self, command):
+   find_xterm_cmd = "xdotool search --name xterm"
+   window_id = subprocess.check_output(find_xterm_cmd, shell=True).strip()
+
+   send_cmd = f"xdotool type --window {window_id} '{command}' && xdotool key --window {window_id} Return"
+   subprocess.call(send_cmd, shell=True)
+```
 
 ## Contact
 
