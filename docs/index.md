@@ -522,6 +522,16 @@ def send_command_to_xterm(self, command):
    send_cmd = f"xdotool type --window {window_id} '{command}' && xdotool key --window {window_id} Return"
    subprocess.call(send_cmd, shell=True)
 ```
+\
+In the meantime, I discovered that several threads were being launched unnecessarily, which slowed down the execution of the manager, but after removing them, a performance improvement is noticeable.
+
+Using this:
+```python
+self.ros_version = subprocess.check_output(["bash", "-c", "echo $ROS_DISTRO"])
+```
+
+We do not need to launch de same command several times.
+
 
 ## Contact
 
