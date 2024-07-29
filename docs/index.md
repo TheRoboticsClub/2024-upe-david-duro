@@ -17,13 +17,14 @@ This blog serves as a working memory, the index does not keep an alphabetical or
 - [Developer Enviroment](#developer-enviroment)
 - [Solving First Issue](#solving-first-issue)
 - [JdRobot Division](#jdrobot-division)
-- [issue-2640](#issue-2640)
+- [issue #2640](#issue-2640)
 - [RoboticsInfrastructure Starting Guide](#roboticsinfrastructure-starting-guide)
 - [Testing exercises and solutions](#testing-exercises-and-solutions)
 - [Gui interfaces and console interfaces created](#gui-interfaces-and-console-interfaces-created)
 - [Opened #2655](#opened-2655)
 - [Starting to solve issue #2655](#starting-to-solve-issue-2655)
-- [Reopened #2576](#reopened-2576)
+- [issue #147](#issue-147)
+- [Contact](#contact)
 - [Contact](#contact)
 
 ## Building GitHub Pages
@@ -298,7 +299,7 @@ Repository for communications between `browser` - `manager` - `user`.
 
 Repository with robot models, gazebo maps and launchers. It also contains libraries such as HAL.
 
-## issue-2640
+## issue #2640
 
 GUI was divided into two classes, which was not efficient as this could actually be simplified. We simplified the functions and created a single global class called ThreadingGUI. Once this was done, we realised that acks are never checked. We also solved the problem.
 
@@ -498,15 +499,15 @@ Now that this has been clarified, the two programs that use this module have bee
 
 At this point, it remains to properly notify the user of errors, but there is no longer an error in the line number.
 
-## Reopened #2576
+### Reopened #2576
 
 As I explained above, for some reason a port is not closed properly, which prevents communication between the docker and the browser on relaunch.
 
-## Problems with issue #2356
+### Problems with issue #2356
 
 As I explained, to temporarily solve the port error, I have to launch docker each time with a configuration, with and without graphic acceleration, the problem is that now with graphic acceleration gazebo doesn't load.
 
-## New Functionalities
+### New Functionalities
 
 To get the missing functionality of notifying with an error pop-up when errors have been detected in the code, apart from a great understanding of how the manager works we also have to learn how the coms_manager works. This is quite complicated, so I decided to start trying to send errors through the browser console so that the user can debug the program without problems.
 
@@ -522,7 +523,17 @@ def send_command_to_xterm(self, command):
    send_cmd = f"xdotool type --window {window_id} '{command}' && xdotool key --window {window_id} Return"
    subprocess.call(send_cmd, shell=True)
 ```
-\
+
+### Closing issue
+
+Thanks to a collaborator, we have been able to redirect the output from the developer console to the user console. This way:
+
+```python
+with open('/dev/pts/1', 'w') as console:
+   console.write(errors + "\n\n")
+```
+
+## issue #147
 In the meantime, I discovered that several threads were being launched unnecessarily, which slowed down the execution of the manager, but after removing them, a performance improvement is noticeable.
 
 Using this:
@@ -531,6 +542,8 @@ self.ros_version = subprocess.check_output(["bash", "-c", "echo $ROS_DISTRO"])
 ```
 
 We do not need to launch de same command several times.
+
+
 
 
 ## Contact
