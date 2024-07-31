@@ -21,10 +21,13 @@ This blog serves as a working memory, the index does not keep an alphabetical or
 - [RoboticsInfrastructure Starting Guide](#roboticsinfrastructure-starting-guide)
 - [Testing exercises and solutions](#testing-exercises-and-solutions)
 - [Gui interfaces and console interfaces created](#gui-interfaces-and-console-interfaces-created)
-- [Opened #2655](#opened-2655)
+- [Updated docs](#updated-docs)
+- [issue #2655](#issue-2655)
 - [Starting to solve issue #2655](#starting-to-solve-issue-2655)
+- [issue #2576](#issue-2576)
 - [issue #147](#issue-147)
-- [Contact](#contact)
+- [issue #2668](#issue-2668)
+- [issue #2508](#issue-2508)
 - [Contact](#contact)
 
 ## Building GitHub Pages
@@ -389,15 +392,16 @@ All exercises were modified, simplified and all repetitive code was removed, hon
 
 Thanks to this breakthrough and some changes provided by other contributors, the new version 4.6.2 has been released.
 
-## Opened #2655
-
-The console do not works properly because it always return an incorrect line error. It looks simple, but this bug is complex.
-
 ## Updated docs
 
 Some of the instructions were very brief and more explanations have been added to solve some of the most common problems. There is still work to be done here, but some things are still beyond my knowledge at the moment.
 
-## Starting to solve issue #2655
+## issue #2655
+
+The console do not works properly because it always return an incorrect line error. It looks simple, but this bug is complex.
+
+
+
 
 ### Arised Problems
 
@@ -499,14 +503,6 @@ Now that this has been clarified, the two programs that use this module have bee
 
 At this point, it remains to properly notify the user of errors, but there is no longer an error in the line number.
 
-### Reopened #2576
-
-As I explained above, for some reason a port is not closed properly, which prevents communication between the docker and the browser on relaunch.
-
-### Problems with issue #2356
-
-As I explained, to temporarily solve the port error, I have to launch docker each time with a configuration, with and without graphic acceleration, the problem is that now with graphic acceleration gazebo doesn't load.
-
 ### New Functionalities
 
 To get the missing functionality of notifying with an error pop-up when errors have been detected in the code, apart from a great understanding of how the manager works we also have to learn how the coms_manager works. This is quite complicated, so I decided to start trying to send errors through the browser console so that the user can debug the program without problems.
@@ -524,6 +520,8 @@ def send_command_to_xterm(self, command):
    subprocess.call(send_cmd, shell=True)
 ```
 
+This was not working.
+
 ### Closing issue
 
 Thanks to a collaborator, we have been able to redirect the output from the developer console to the user console. This way:
@@ -533,8 +531,15 @@ with open('/dev/pts/1', 'w') as console:
    console.write(errors + "\n\n")
 ```
 
+## issue #2576
+
+As I explained above, for some reason a port is not closed properly, which prevents communication between the docker and the browser on relaunch.
+
 ## issue #147
 In the meantime, I discovered that several threads were being launched unnecessarily, which slowed down the execution of the manager, but after removing them, a performance improvement is noticeable.
+
+
+### Closing issue
 
 Using this:
 ```python
@@ -543,6 +548,61 @@ self.ros_version = subprocess.check_output(["bash", "-c", "echo $ROS_DISTRO"])
 
 We do not need to launch de same command several times.
 
+
+## issue #2668
+
+Whether in unibotics, launching robotics academy locally or even launching the backend as a developer, the vnc windows are not updated correctly when changing the exercise world.
+
+## issue 2508
+
+When using the `-g` option in the developer options, the integrated graphics was used instead of nvidia, I didn't really notice this until some test results didn't add up.
+
+### Solving issue
+
+When launching the developer script you can use the options `-g` to use the integrated graphics card or `-n` to use the nvidia graphics card. Before you start, make sure you have the [NVIDIA Container Toolkit installed](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
+
+Now we will have to install the nvidia runtime to use it with our docker:
+```bash
+sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+```
+
+Now we will check if docker recognises nvidia as a new runtime (restarting the docker service to update the new configuration):
+
+```bash
+sudo systemctl restart docker
+docker info | grep -i runtime
+```
+
+It will most likely not recognise it, so we will have to do it manually by editing or creating the `/etc/docker/daemon.json` file:
+
+```json
+{
+  "runtimes": {
+    "nvidia": {
+      "path": "nvidia-container-runtime",
+      "runtimeArgs": []
+    }
+  }
+}
+```
+It is also possible that nvidia-runtime is not installed, check and install it if it is not.
+
+```bash
+dpkg -l | grep nvidia-container-runtime
+```
+
+If it is not installed:
+
+```bash
+sudo apt-get install -y nvidia-container-runtime
+```
+
+Now everything should be ready to start using nvidia with our dockers, restart the docker service to update the configuration and check that everything works correctly.
+
+```bash
+sudo systemctl restart docker
+```
 
 
 
