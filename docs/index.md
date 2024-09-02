@@ -553,7 +553,11 @@ We do not need to launch de same command several times.
 
 Whether in unibotics, launching robotics academy locally or even launching the backend as a developer, the vnc windows are not updated correctly when changing the exercise world.
 
-## issue 2508
+### Update
+
+A colleague solved the problem and the vnc viewers update correctly, the problem now is that every time you try to change the world of an exercise, it tries to close processes that have already been closed giving rise to errors, in addition to a residual error message in the vnc viewer.
+
+## issue #2508
 
 When using the `-g` option in the developer options, the integrated graphics was used instead of nvidia, I didn't really notice this until some test results didn't add up.
 
