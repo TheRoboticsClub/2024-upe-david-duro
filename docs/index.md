@@ -28,6 +28,7 @@ This blog serves as a working memory, the index does not keep an alphabetical or
 - [issue #147](#issue-147)
 - [issue #2668](#issue-2668)
 - [issue #2508](#issue-2508)
+- [Testing on Windows](#testing-on-windows)
 - [Contact](#contact)
 
 ## Building GitHub Pages
@@ -608,7 +609,24 @@ Now everything should be ready to start using nvidia with our dockers, restart t
 sudo systemctl restart docker
 ```
 
+## Testing on Windows
 
+First of all we will install docker on windows.
+
+<img src="imgs/docker-desktop.jpg" alt="Docker" style="height: 100px;">
+
+[docker](https://www.docker.com/products/docker-desktop/)
+
+Once installed we will download the image we are going to test with.
+```bash
+docker pull jderobot/robotics-backend:latest
+```
+
+To use the docker command in the windows terminal, we have to open the terminal as an administrator.
+
+Once the docker image is downloaded, we can run it as the example in unibotics.
+
+When we launch it, we can test unibotics or robotics academy locally. After several tests from windows I have verified that all the exercises work perfectly, but they seem to run slower than from linux. I have also noticed that the `evaluate code` functionality of unibotics is not working.
 
 ## Contact
 
