@@ -628,6 +628,46 @@ Once the docker image is downloaded, we can run it as the example in unibotics.
 
 When we launch it, we can test unibotics or robotics academy locally. After several tests from windows I have verified that all the exercises work perfectly, but they seem to run slower than from linux. I have also noticed that the `evaluate code` functionality of unibotics is not working.
 
+### GPU Acceleration
+SO: Windows 11, RAM: 16 GB, CPU: AMD Ryzen 5 7535HS (6 cores), GPU: NVIDIA GeForce RTX 3050 Ti:
+
+*(Average Percentages up to 100%)*
+
+| Task                     | Gazebo’s RTF | Gazebo’s FPS | % CPU Usage | % GPU Usage |
+|:-------------------------:|:------------:|:------------:|:-----------:|:-----------:|
+| **Follow Line**          | 0.74         | 23           | 82%         | 6%          |
+| **Vacuum Cleaner**       | 0.98         | 19           | 61%         | 6%          |
+| **AutoParking**          | 0.84         | 9            | 70%         | 7%          |
+| **Follow Person**        | 0.97         | 25           | 70%         | 5%          |
+| **Localized Vacuum Cleaner** | 0.98      | 20           | 71%         | 6%          |
+| **Global Navigation**    | 0.85         | 23           | 72%         | 9%          |
+| **Rescue People**        | 1.00         | 34           | 77%         | 11%         |
+| **Obstacle Avoidance**   | 0.80         | 16           | 74%         | 5%          |
+| **3D Reconstruction**    | 0.90         | 14           | 80%         | 7%          |
+| **Amazon Warehouse**     | 0.98         | 7            | 82%         | 6%          |
+| **Montecarlo Laser Localized** | 0.98    | 20           | 75%         | 12%         |
+
+
+### No GPU Acceleration
+SO: Windows 11, RAM: 16 GB, CPU: AMD Ryzen 5 7535HS (6 cores):
+
+*(Average Percentages up to 100%)*
+
+| Task                     | Gazebo’s RTF | Gazebo’s FPS | % CPU Usage |
+|:-------------------------:|:------------:|:------------:|:-----------:|
+| **Follow Line**          | 0.54         | 7            | 80%         |
+| **Vacuum Cleaner**       | 0.98         | 11           | 75%         |
+| **AutoParking**          | 0.75         | 4            | 78%         |
+| **Follow Person**        | 0.95         | 4            | 79%         |
+| **Localized Vacuum Cleaner** | 0.97      | 11           | 74%         |
+| **Global Navigation**    | 0.83         | 15           | 75%         |
+| **Rescue People**        | 0.99         | 14           | 78%         |
+| **Obstacle Avoidance**   | 0.74         | 10           | 76%         |
+| **3D Reconstruction**    | 0.86         | 6            | 79%         |
+| **Amazon Warehouse**     | 0.96         | 4            | 79%         |
+| **Montecarlo Laser Localized** | 0.97    | 12           | 74%         |
+
+
 ## Contact
 
 <a href="https://linkedin.com/in/david-duro-aragon%c3%a9s-32a0a4272" target="blank">
