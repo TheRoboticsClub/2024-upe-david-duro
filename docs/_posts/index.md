@@ -1,8 +1,12 @@
 ---
 title: JdRobot Internship Blog
+img_path: /assets/img/
+toc: true
+comments: true
+pin: true
 ---
 
-# <img src="imgs/logo.png" alt="JdRobot" style="height: 100px;">
+# <img src="logo.png" alt="JdRobot" style="height: 100px;">
 
 ## Welcome to my JdRobot Internship Blog!
 
@@ -414,7 +418,7 @@ After several tests, I have found that for some reason the margin of error is so
 
 I have also reopened an issue that occurred when quickly relaunching docker, which generates an error because port 5900 0 5901 is not cleared.
 
-# <img src="imgs/port_issue.png" alt="Port issue">
+# <img src="port_issue.png" alt="Port issue">
 
 To solve the error I have found two temporal solutions, the first is to remove the docker that has not been closed properly, this closes the port forcibly:
 
@@ -613,7 +617,7 @@ sudo systemctl restart docker
 
 First of all we will install docker on windows.
 
-<img src="imgs/docker-desktop.jpg" alt="Docker" style="height: 100px;">
+<img src="docker-desktop.jpg" alt="Docker" style="height: 100px;">
 
 [docker](https://www.docker.com/products/docker-desktop/)
 
