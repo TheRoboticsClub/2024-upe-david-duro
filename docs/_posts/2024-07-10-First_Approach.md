@@ -8,7 +8,7 @@ toc: true
 comments: true
 ---
 
-<!-- # <img src="logo.png" alt="JdRobot" style="height: 100px;"> -->
+# <img src="logo.png" alt="JdRobot" style="height: 100px;">
 
 ## Welcome to my JdRobot Internship Blog!
 
@@ -29,7 +29,6 @@ This blog serves as a working memory, the index does not keep an alphabetical or
 - [Gui interfaces and console interfaces created](#gui-interfaces-and-console-interfaces-created)
 - [Updated docs](#updated-docs)
 - [issue #2655](#issue-2655)
-- [Starting to solve issue #2655](#starting-to-solve-issue-2655)
 - [issue #2576](#issue-2576)
 - [issue #147](#issue-147)
 - [issue #2668](#issue-2668)
