@@ -1,14 +1,14 @@
 ---
 title: JdRobot Internship Blog
 date: 2024-07-10 9:00:00 +0100
-tags: [weekly progress] 
+tags: [weekly progress]
+author: david
 img_path: /assets/img/
 toc: true
 comments: true
-pin: true
 ---
 
-# <img src="logo.png" alt="JdRobot" style="height: 100px;">
+<!-- # <img src="logo.png" alt="JdRobot" style="height: 100px;"> -->
 
 ## Welcome to my JdRobot Internship Blog!
 
